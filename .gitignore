@@ -10,7 +10,7 @@ __pycache__/
 
 # PyCharm
 */venv/
-../.idea/
+.idea/
 *.iml
 
 # Unit test / pytest
