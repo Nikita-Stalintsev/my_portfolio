@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# macOS
+.DS_Store
+
+# PyCharm
+*/venv/
+../.idea/
+*.iml
+
+# Unit test / pytest
+.pytest_cache/

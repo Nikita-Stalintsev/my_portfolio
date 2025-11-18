@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    {% block title %} {% endblock title %}
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="nav-wrap" role="banner">
+    <nav class="nav" role="navigation" aria-label="Главное меню">
+
+        <nav class="nav-buttons">
+            <a href="{% url 'about' %}" class="nav-btn {% if request.path == '/' %}active{% endif %}">ОБО МНЕ</a>
+            <a href="{% url 'skills' %}" class="nav-btn {% if request.path == '/skills/' %}active{% endif %}">НАВЫКИ</a>
+            <a href="{% url 'projects' %}" class="nav-btn {% if request.path == '/projects/' %}active{% endif %}">ПРОЕКТЫ</a>
+            <a href="{% url 'contacts' %}" class="nav-btn {% if request.path == '/contacts/' %}active{% endif %}">КОНТАКТЫ</a>
+        </nav>
+
+    </nav>
+</header>
+
+<!-- MAIN -->
+{% block content %}
+{% endblock content %}
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+    <div class="socials">
+        <a href="https://t.me/+79623235750" target="_blank" aria-label="Telegram">
+            <img src="{% static 'portfolio/images/TG.png' %}" alt="Telegram"/>
+        </a>
+        <a href="https://vk.com/idinaxyipchel" target="_blank" aria-label="VK">
+            <img src="{% static 'portfolio/images/VK.png' %}" alt="VK"/>
+        </a>
+        <a href="https://wa.me/+79623235750" target="_blank" aria-label="WhatsApp">
+            <img src="{% static 'portfolio/images/WA.png' %}" alt="WhatsApp"/>
+        </a>
+    </div>
+    <div>© 2025 — Сайт написан на Django.</div>
+</footer>
+
+</body>
+</html>
