@@ -16,10 +16,9 @@
     <nav class="nav" role="navigation" aria-label="Главное меню">
 
         <nav class="nav-buttons">
-            <a href="{% url 'about' %}" class="nav-btn {% if request.path == '/' %}active{% endif %}">ОБО МНЕ</a>
-            <a href="{% url 'skills' %}" class="nav-btn {% if request.path == '/skills/' %}active{% endif %}">НАВЫКИ</a>
-            <a href="{% url 'projects' %}" class="nav-btn {% if request.path == '/projects/' %}active{% endif %}">ПРОЕКТЫ</a>
-            <a href="{% url 'contacts' %}" class="nav-btn {% if request.path == '/contacts/' %}active{% endif %}">КОНТАКТЫ</a>
+            {% for nb in nav_buttons %}
+                <a href="{% url nb.url_name %}" class="nav-btn {% if request.path == nb.path %}active{% endif %}">{{ nb.title }}</a>
+            {% endfor %}
         </nav>
 
     </nav>
