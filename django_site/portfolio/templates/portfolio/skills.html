@@ -1,3 +1,7 @@
 {% extends './base.html' %}
 {% block content %}
+    {% for skill in skills %}
+        <h2>{{ skill.title }}</h2>
+        {{ skill.content }}
+    {% endfor %}
 {% endblock content %}

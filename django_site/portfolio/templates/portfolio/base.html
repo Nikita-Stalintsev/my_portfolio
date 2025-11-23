@@ -17,7 +17,8 @@
 
         <nav class="nav-buttons">
             {% for nb in nav_buttons %}
-                <a href="{% url nb.url_name %}" class="nav-btn {% if request.path == nb.path %}active{% endif %}">{{ nb.title }}</a>
+                <a href="{% url nb.url_name %}"
+                   class="nav-btn {% if request.path == nb.path %}active{% endif %}">{{ nb.title }}</a>
             {% endfor %}
         </nav>
 
