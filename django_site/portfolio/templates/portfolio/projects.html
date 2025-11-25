@@ -1,1 +1,14 @@
 {% extends './base.html' %}
+
+{% block content %}
+
+    {% for p in projects %}
+        {% for i in p.tags.all %}
+            {{ i }}
+        {% endfor %}
+        <h2>{{ p.title }}</h2>
+        <p>{{ p.content }}</p>
+        <a href="{{ p.link }}" target="_blank">Сам проект</a>
+    {% endfor %}
+
+{% endblock content %}

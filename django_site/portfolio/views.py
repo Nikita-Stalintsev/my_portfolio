@@ -7,13 +7,13 @@ def about(request):
 
 
 def skills(request):
-    skill_objs = Skills.objects.all()
-
-    return render(request, 'portfolio/skills.html', context={'skills': skill_objs})
+    skills = Skill.objects.all()
+    return render(request, 'portfolio/skills.html', context={'skills': skills})
 
 
 def projects(request):
-    return render(request, 'portfolio/projects.html', )
+    projects = Project.objects.all()
+    return render(request, 'portfolio/projects.html', context={'projects': projects})
 
 
 def contacts(request):
