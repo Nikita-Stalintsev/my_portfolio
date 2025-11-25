@@ -16,5 +16,5 @@ def projects(request):
     return render(request, 'portfolio/projects.html', context={'projects': projects})
 
 
-def contacts(request):
-    return render(request, 'portfolio/contacts.html', )
+def contact(request):
+    return render(request, 'portfolio/contact.html', )
