@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
+from .forms import *
 
 
 def about(request):
@@ -17,4 +18,11 @@ def projects(request):
 
 
 def contact(request):
-    return render(request, 'portfolio/contact.html', )
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('about')
+    else:
+        form = ContactForm()
+    return render(request, 'portfolio/contact.html', context={'form': form})
