@@ -1,9 +1,24 @@
 {% extends './base.html' %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить</button>
-    </form>
+
+    <div class="form_container">
+        <h2 class="form_title">Связаться со мной</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="id_from" class="form_label">От кого</label>
+            <input type="text" id="id_from" name="from_user" class="form_input">
+            <label for="id_content" class="form_label">Содержание</label>
+            <textarea id="id_content" name="content" class="form_textarea"></textarea>
+
+            <button type="submit" class="form_button">Отправить</button>
+        </form>
+
+        <p class="contact-note">
+            Вы также можете связаться со мной любым другим удобным способом
+        </p>
+        <div class="contact-arrow">↓</div>
+    </div>
+
 {% endblock content %}

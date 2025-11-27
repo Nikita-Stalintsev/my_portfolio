@@ -1,7 +1,9 @@
 {% extends './base.html' %}
 {% block content %}
+<div class="skills_wrapper">
     {% for skill in skills %}
-        <h2>{{ skill.title }}</h2>
-        {{ skill.content }}
+        <h2 class="skills_title">{{ skill.title }}</h2>
+        <p class="skills_content">{{ skill.content }}</p>
     {% endfor %}
+</div>
 {% endblock content %}
