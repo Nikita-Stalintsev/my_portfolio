@@ -1,5 +1,8 @@
 {% extends './base.html' %}
 
+{% block title %} <title>Контакты</title> {% endblock title %}
+
+
 {% block content %}
 
     <div class="form_container">
@@ -7,10 +10,11 @@
 
         <form method="POST">
             {% csrf_token %}
-            <label for="id_from" class="form_label">От кого</label>
-            <input type="text" id="id_from" name="from_user" class="form_input">
-            <label for="id_content" class="form_label">Содержание</label>
-            <textarea id="id_content" name="content" class="form_textarea"></textarea>
+            {{ form.as_p }}
+{#            <label for="id_from" class="form_label">От кого</label>#}
+{#            <input type="text" id="id_from" name="from_user" class="form_input">#}
+{#            <label for="id_content" class="form_label">Содержание</label>#}
+{#            <textarea id="id_content" name="content" class="form_textarea"></textarea>#}
 
             <button type="submit" class="form_button">Отправить</button>
         </form>
