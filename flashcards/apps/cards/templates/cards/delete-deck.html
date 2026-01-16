@@ -1,0 +1,43 @@
+{% extends "cards/base.html" %}
+{% block title %}Удалить колоду{% endblock %}
+
+{% block content %}
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{% url 'index' %}">
+                <span class="brand-text">FlashCards</span>
+            </a>
+
+            <nav class="header-actions">
+                <a class="btn btn-outline" href="{% url 'index' %}">Назад</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="form-card">
+                <h1 class="page-title" style="margin-bottom:10px;">Удаление колоды</h1>
+                <p class="page-subtitle" style="margin-bottom:14px;">
+                    Выбери колоду и нажми «Удалить». Удаление произойдёт сразу.
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label class="form-label" for="{{ form.deck.id_for_label }}">{{ form.deck.label }}</label>
+                        {{ form.deck }}
+                    </div>
+
+                    <div class="form-actions">
+                        <a class="btn btn-outline" href="{% url 'index' %}">Отмена</a>
+                        <button class="btn-delete" type="submit">
+                            Удалить
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+{% endblock %}

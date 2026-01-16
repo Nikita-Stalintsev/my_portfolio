@@ -1,0 +1,80 @@
+{% extends 'cards/base.html' %}
+{% load static %}
+{% block title %}Карточки{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'cards/css/deck.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{% url 'index' %}">
+                <span class="brand-text">FlashCards</span>
+            </a>
+
+            <div class="review-top-actions">
+                <a class="btn btn-outline" href="{% url 'deck' deck.slug %}">← Назад к словам</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main review-main">
+        <div class="container review-wrap">
+
+            <div class="review-head">
+                <div class="review-title">{{ deck.title }}</div>
+                <div class="review-hint">Нажми на карточку, чтобы перевернуть</div>
+            </div>
+
+            {% if card %}
+                <!-- Карточка -->
+                <button class="flip-card" id="flipCard" type="button" aria-label="Карточка. Нажми чтобы перевернуть">
+                    <div class="flip-inner">
+                        <div class="flip-face flip-front">
+                            <div class="flip-label">Вопрос</div>
+                            <div class="flip-text" style="color: white;">{{ card.name }}</div>
+                            <div class="flip-tip">клик - переворот</div>
+                        </div>
+
+                        <div class="flip-face flip-back">
+                            <div class="flip-label">Ответ</div>
+                            <div class="flip-text" style="color: white;">{{ card.content }}</div>
+                            <div class="flip-tip">оцени себя ниже</div>
+                        </div>
+                    </div>
+                </button>
+
+                <div class="review-actions">
+                    <a class="btn btn-bad"
+                       href="{% url 'card' deck.slug %}?mode=next&card={{ card.id }}">Нет</a>
+
+                    <a class="btn btn-good"
+                       href="{% url 'card' deck.slug %}?mode=next&card={{ card.id }}">Верно</a>
+                </div>
+
+                <div class="review-bottom">
+                    <a class="link-soft" href="{% url 'card' deck.slug %}?mode=random">Случайная карточка</a>
+                    <span class="dot-sep">•</span>
+                    <a class="link-soft" href="{% url 'deck' deck.slug %}">Показать все слова</a>
+                </div>
+
+                <script>
+                    const flipCard = document.getElementById("flipCard");
+                    flipCard.addEventListener("click", () => flipCard.classList.toggle("is-flipped"));
+                </script>
+
+            {% else %}
+                <section class="form-card">
+                    <h1 class="page-title">В колоде нет карточек</h1>
+                    <p class="page-subtitle">Добавь хотя бы одну карточку и возвращайся к повторению.</p>
+                    <div class="form-actions">
+                        <a class="btn" href="{% url 'card_add' deck.slug %}">+ Добавить карточку</a>
+                        <a class="btn btn-outline" href="{% url 'deck' deck.slug %}">Назад</a>
+                    </div>
+                </section>
+            {% endif %}
+
+        </div>
+    </main>
+{% endblock %}

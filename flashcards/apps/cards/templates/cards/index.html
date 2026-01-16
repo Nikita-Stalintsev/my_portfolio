@@ -1,0 +1,73 @@
+{% extends 'cards/base.html' %}
+{% block title %}FlashCards{% endblock %}
+
+{% block content %}
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{% url 'index' %}">
+                <span class="brand-text">FlashCards</span>
+            </a>
+
+            <nav class="header-actions">
+                <a class="btn-delete" href="{% url 'deck_delete' %}">Удалить колоду</a>
+                <a class="btn" href="{% url 'deck_add' %}">Новая колода</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Мои колоды</h1>
+                    <p class="page-subtitle">Выбирай колоду и начинай повторение.</p>
+                </div>
+            </div>
+
+            <section class="deck-grid">
+                {% for deck in decks %}
+                    <a class="deck-card" href="{{ deck.get_absolute_url }}">
+                        <div class="deck-top">
+                            <h2 class="deck-title">{{ deck.title }}</h2>
+                            <span class="pill pill-warm">{{ deck.category }}</span>
+                        </div>
+
+                        <p class="deck-desc">{{ deck.description }}</p>
+
+                        <div class="deck-bottom">
+                            <div class="meta">
+                                {% if deck.cards.count %}
+                                    <span class="meta-item">
+                                    <span class="dot dot-warm"></span>
+                                    {{ deck.cards.count }}
+                                </span>
+                                {% endif %}
+
+                                <span class="meta-item">
+                                <span class="dot dot-mint"></span>
+                                    {% if deck.last_card_update %}
+                                        Обновлено: {{ deck.last_card_update|date:"d.m.Y H:i" }}
+                                    {% else %}
+                                        Нет карточек
+                                    {% endif %}
+                            </span>
+                            </div>
+
+                            <span class="chev">→</span>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                <a class="deck-card deck-create" href="{% url 'deck_add' %}">
+                    <div class="create-icon" aria-hidden="true">+</div>
+                    <h2 class="deck-title">Создать новую колоду</h2>
+                    <p class="deck-desc">Добавь тему, импортируй или собери вручную.</p>
+                    <div class="deck-bottom">
+                        <span class="hint">Быстрый старт</span>
+                        <span class="chev" aria-hidden="true">→</span>
+                    </div>
+                </a>
+            </section>
+        </div>
+    </main>
+{% endblock %}

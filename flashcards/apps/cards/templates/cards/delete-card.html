@@ -1,0 +1,44 @@
+{% extends 'cards/base.html' %}
+{% load static %}
+{% block title %}Удалить карточку{% endblock %}
+
+{% block content %}
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{% url 'index' %}">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">Flashcards</span>
+            </a>
+
+            <nav class="header-actions">
+                <a class="btn btn-outline" href="{% url 'deck' deck.slug %}">Назад</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+
+            <section class="form-card">
+                <h1 class="page-title" style="margin-bottom:10px;">Удалить карточку</h1>
+                <p class="page-subtitle" style="margin-bottom:14px;">
+                    Колода: <b>{{ deck.title }}</b>. Выбери карточку и нажми “Удалить”.
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <div class="form-actions">
+                        <a class="btn btn-outline" href="{% url 'deck' deck.slug %}">Отмена</a>
+
+                        <button class="btn-delete" type="submit">
+                            Удалить
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

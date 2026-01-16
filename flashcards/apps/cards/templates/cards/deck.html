@@ -1,0 +1,51 @@
+{% extends "cards/base.html" %}
+{% load static %}
+{% block title %} Колода {% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'cards/css/deck.css' %}">
+{% endblock %}
+{% block content %}
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{% url "index" %}">
+                <span class="brand-text">FlashCards</span>
+            </a>
+            <a class="btn btn-outline" href="{% url "index" %}">← К колодам</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="deck-simple-head">
+                <div>
+                    <h1 class="deck-simple-title">Английские слова</h1>
+                    <p class="deck-simple-subtitle">Нажми “Начать” и повторяй карточки одну за одной.</p>
+                </div>
+
+
+                <a class="btn-delete btn-start" href="{% url 'card_delete' deck.slug %}">Удалить карточку</a>
+                <a class="btn btn-start" href="{% url "card_add" deck.slug %}">Добавить карточку</a>
+                <a class="btn btn-start" href="{% url "card" deck.slug %}"
+                   style="background:#40d507;border:1px solid rgba(255,255,255,0.12);color:#0b1320;">Начать</a>
+
+            </div>
+
+            <section class="words-panel" aria-label="Список карточек">
+                <div class="words-title">Все слова</div>
+
+
+                {% for card in cards %}
+                    <div class="words-list">
+                    <div class="word-row">
+                        <div class="word-front">{{ card.name }}</div>
+                        <div class="word-sep">—</div>
+                        <div class="word-back">{{ card.content }}</div>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+
+{% endblock %}
